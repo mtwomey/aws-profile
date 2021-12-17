@@ -7,7 +7,7 @@ const ini = require('ini');
 const command = {
     name: 'chooseProfile',
     syntax: [
-        '--choose-profile',
+        '--profile',
         '-p'
     ],
     helpText: 'Copy the chosen profile over the default profile',
@@ -31,6 +31,7 @@ async function handler() {
         }).map(profile => profile[0])[0];
 
         console.log(`Default profile currently resembles "${matchingSecret}"`);
+        console.log('\n"aws-profile [profile-name]" to set the default profile to match a given profile.');
         printPossibleProfiles();
         return;
     }
@@ -41,6 +42,7 @@ async function handler() {
         awsCredentials.default.aws_secret_access_key = awsCredentials[argument].aws_secret_access_key;
         fs.writeFileSync(configFile, ini.stringify(awsConfig, { whitespace: true }));
         fs.writeFileSync(credentialsFile, ini.stringify(awsCredentials, { whitespace: true }));
+        console.log(`Default profile now matches profile "${argument}"`);
     } else {
         console.log(`Profile "${argument}" not found.`);
         printPossibleProfiles();

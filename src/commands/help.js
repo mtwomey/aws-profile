@@ -16,7 +16,7 @@ const command = {
 tcommands.register(command);
 
 async function handler () {
-    console.log(`Usage: ${pjson.name} [command] [params]\n`);
+    console.log(`Usage: ${pjson.name} [profile name]\n`);
     console.log(`Commands:\n`);
 
     Object.keys(tcommands.commands).filter(command => {

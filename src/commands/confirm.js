@@ -8,7 +8,8 @@ const command = {
         '--confirm',
         '-y'
     ],
-    helpText: 'Confirm action'
+    helpText: 'Confirm action',
+    showInHelp: false
 };
 
 tcommands.register(command);
